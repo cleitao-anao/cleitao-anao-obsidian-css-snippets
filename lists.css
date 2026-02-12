@@ -1,0 +1,130 @@
+/* =========================================================== */
+/* DEFINIÇÃO DE VARIÁVEIS PARA LISTAS                          */
+/* =========================================================== */
+body {
+    --list-marker-color-1: #5c6370;      /* Cor da "bolinha" ou número (Vermelho suave) */
+    --list-marker-color-2: #cd00cdd2;      /* Cor da "bolinha" ou número (Vermelho suave) */
+    --list-marker-color-3: #FF0D97;      /* Cor da "bolinha" ou número (Vermelho suave) */
+    --list-marker-color-4: #FF0000;      /* Cor da "bolinha" ou número (Vermelho suave) */
+
+    --h1-color: #9D00FF; /* Roxo */
+    --h2-color: #cd00cdd2; /* Magenta */
+    --h3-color: #FF0D97; /* Rosa */
+    --h4-color: #FF0000; /* Vermelho */
+
+    --list-indent-line: #3b4048;       /* Cor da linha vertical de guia */
+    --list-hover-bg: #2c313a;          /* Fundo ao passar o mouse */
+    
+    --checkbox-border: #abb2bf;        /* Borda do checkbox vazio */
+    --checkbox-checked-bg: #b362ff;    /* Fundo verde quando marcado */
+    --checkbox-marker: #282c34;        /* Cor do "V" de check */
+}
+
+/* =========================================================== */
+/* 1. ESTILO GERAL (Espaçamento e Hover)                       */
+/* =========================================================== */
+
+/* Espaçamento entre itens da lista para não ficar tudo grudado */
+.markdown-rendered ul li, .markdown-rendered ol li,
+.cm-s-obsidian .cm-line.HyperMD-list-line {
+    padding-top: 10px;
+    padding-bottom: 2px;
+
+}
+
+
+/* =========================================================== */
+/* 2. BULLETS E NÚMEROS (Marcadores com Níveis)                */
+/* =========================================================== */
+
+/* Garante a cor dos marcadores */
+.markdown-rendered ul > li::marker,
+.markdown-rendered ol > li::marker {
+    color: var(--list-marker-color-1) !important;
+}
+.markdown-rendered ul ul > li::marker,
+.markdown-rendered ol ol > li::marker {
+    color: var(--list-marker-color-1) !important;
+}
+.markdown-rendered ul ul ul > li::marker,
+.markdown-rendered ol ol ol > li::marker {
+    color: var(--list-marker-color-1) !important;
+}
+.markdown-rendered ul ul ul ul > li::marker,
+.markdown-rendered ol ol ol ol > li::marker {
+    color: var(--list-marker-color-1) !important;
+}
+
+/* --- NÍVEL 1: Bolinha Cheia (Disc) --- */
+.markdown-rendered ul {
+    list-style-type: disc !important;
+}
+
+/* --- NÍVEL 2: Círculo Vazio (Circle) --- */
+.markdown-rendered ul ul {
+    list-style-type: disc !important;
+}
+
+/* --- NÍVEL 3: Quadrado (Square) --- */
+.markdown-rendered ul ul ul {
+    list-style-type: square !important;
+}
+
+/* --- MODO EDIÇÃO / LIVE PREVIEW --- */
+/* Nota: No modo de edição, o símbolo é o texto que você digita (- ou *). 
+   Aqui forçamos apenas a cor e o peso da fonte. */
+.cm-formatting-list, .cm-formatting-list-ol {
+    color: var(--list-marker-color) !important;
+    font-weight: bold;
+}
+/* =========================================================== */
+/* 3. CHECKBOXES (Tarefas - [ ] e [x])                         */
+/* =========================================================== */
+
+/* Checkbox Vazio */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid var(--checkbox-border);
+    border-radius: 4px;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: 3px;
+    cursor: pointer;
+    background-color: transparent;
+    transition: all 0.2s ease;
+}
+
+/* Hover no Checkbox */
+input[type="checkbox"]:hover {
+    border-color: var(--checkbox-checked-bg);
+    background-color: rgba(152, 195, 121, 0.253);
+}
+
+/* Checkbox Marcado [x] */
+input[type="checkbox"]:checked {
+    background-color: var(--checkbox-checked-bg);
+    border-color: var(--checkbox-checked-bg);
+}
+
+input[type="checkbox"]:checked:hover {
+    border-color: var(--checkbox-checked-bg);
+    background-color: #98c37985;
+}
+
+/* O desenho do "V" (Check) dentro do quadrado */
+input[type="checkbox"]:checked::after {
+    content: '✔';
+    font-size: 10px;
+    color: var(--checkbox-marker);
+}
+
+/* Texto riscado e mais apagado quando a tarefa está completa */
+.markdown-preview-view .task-list-item.is-checked,
+.markdown-source-view .cm-line.HyperMD-task-line[data-task="x"] {
+    text-decoration: line-through;
+    color: #5c6370; /* Cor cinza escura */
+    opacity: 0.8;
+}
+

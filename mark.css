@@ -1,0 +1,37 @@
+/* 1. MODO DE VISUALIZAÇÃO (READING VIEW)
+Altera o estilo da tag <mark> quando o arquivo está em visualização  */
+body {
+    --mark-bg-color: #953eb482;
+}
+
+
+
+.markdown-rendered mark {
+    background-color: var(--mark-bg-color) !important; 
+    color: #dadada !important;
+    padding: 0 0.1em; 
+}
+
+
+
+/* 2. MODO DE EDIÇÃO (SOURCE/LIVE PREVIEW VIEW) */
+/* Altera o estilo do texto marcado na visualização em tempo real (Live Preview) */
+
+
+
+.cm-s-obsidian .cm-highlight {
+    background-color: var(--mark-bg-color) !important; 
+    color: #dadada !important; 
+}
+
+
+
+/* 3. MODO DE EDIÇÃO DE CÓDIGO FONTE (SOURCE MODE) */
+/* Garante que o texto marcado tenha a cor do texto normal do tema */
+/* Isto é opcional, mas evita que a cor do texto fique estranha no modo de edição */
+
+
+
+.cm-s-obsidian .cm-highlight .cm-text {
+    color: #1a1a1a !important; 
+}   

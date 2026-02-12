@@ -1,0 +1,144 @@
+/* =========================================================== */
+/* 1. VARIÁVEIS / PALETA DE CORES                              */
+/* =========================================================== */
+body {
+    --code-block-bg-color: #282c34;
+    --code-block-hover-bg: #3b3d44;
+    --code-block-line-number-color: #636d83;
+    --code-block-padding-left: 3.5em; /* Espaço para os números */
+    --code-font-family: 'Consolas', 'Fira Code', monospace;
+
+    --inline-code-bg: #282c34;
+    --inline-code-border: #3b4048;
+}
+
+/* =========================================================== */
+/* 2. SOURCE / LIVE PREVIEW (CodeMirror 6)                     */
+/* =========================================================== */
+
+/* Estilo Base da Linha */
+.cm-editor .HyperMD-codeblock.cm-line {
+    background-color: var(--code-block-bg-color) !important;
+    font-family: var(--code-font-family);
+    padding-left: var(--code-block-padding-left) !important;
+
+    /* QUEBRA DE LINHA (WRAP) */
+    white-space: pre-wrap !important;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+/* Efeito Hover na linha */
+.cm-editor .HyperMD-codeblock.cm-line:hover {
+    background-color: var(--code-block-hover-bg) !important;
+}
+
+/* Arredondamento Superior (Início do Bloco) */
+.cm-editor .HyperMD-codeblock.cm-line.HyperMD-codeblock-begin-bg {
+    border-radius: 6px 6px 0 0;
+    /* CORREÇÃO: Reseta o contador aqui, no início de CADA bloco */
+    counter-reset: codeLineCounter; 
+}
+
+/* Arredondamento Inferior (Fim do Bloco) */
+.cm-editor .HyperMD-codeblock.cm-line.HyperMD-codeblock-end-bg {
+    border-radius: 0 0 6px 6px;
+}
+
+/* =========================================================== */
+/* 2.1 NUMERAÇÃO DE LINHAS (LÓGICA CORRIGIDA)                  */
+/* =========================================================== */
+
+/* Incrementa o contador apenas nas linhas de conteúdo (não no início/fim ```) */
+.cm-editor .HyperMD-codeblock.cm-line:not(.HyperMD-codeblock-begin-bg):not(.HyperMD-codeblock-end-bg) {
+    counter-increment: codeLineCounter;
+}
+
+/* Exibe o número antes da linha */
+.cm-editor .HyperMD-codeblock.cm-line:not(.HyperMD-codeblock-begin-bg):not(.HyperMD-codeblock-end-bg)::before {
+    content: counter(codeLineCounter);
+    font-size: 0.85em;
+    display: inline-block;
+    color: var(--code-block-line-number-color);
+    
+    /* Posicionamento absoluto relativo ao padding */
+    position: absolute;
+    left: 0;
+    width: var(--code-block-padding-left); /* Usa a variável para alinhar */
+    text-align: right;
+    padding-right: 1em;
+    
+    /* Impede seleção e cliques no número */
+    pointer-events: none;
+    user-select: none; 
+}
+
+/* Ajuste necessário para posicionamento absoluto funcionar */
+.cm-editor .HyperMD-codeblock.cm-line {
+    position: relative;
+}
+
+/* =========================================================== */
+/* 2.2 CÓDIGO INLINE — SOURCE                                  */
+/* =========================================================== */
+
+.cm-editor span.cm-inline-code {
+    background-color: var(--inline-code-bg);
+    border: 1px solid var(--inline-code-border);
+    border-radius: 5px;
+    padding: 0.15em 0.4em;
+    font-family: var(--code-font-family);
+    font-size: 0.95em;
+    
+    white-space: break-spaces;
+    word-break: break-word;
+}
+
+/* =========================================================== */
+/* 3. READING / PREVIEW                                        */
+/* =========================================================== */
+
+/* Bloco de código */
+.markdown-rendered pre {
+    background-color: var(--code-block-bg-color) !important;
+    border-radius: 8px !important;
+    /* Sombra roxa mantida conforme seu pedido original */
+    box-shadow: #4c1261 5px 5px 10px 0px !important;
+
+    /* QUEBRA DE LINHA */
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+}
+
+/* Conteúdo do código */
+.markdown-rendered pre code {
+    font-family: var(--code-font-family);
+    white-space: inherit;
+}
+
+/* =========================================================== */
+/* 3.1 CÓDIGO INLINE — READING                                 */
+/* =========================================================== */
+
+.markdown-rendered code:not(pre code) {
+    background-color: var(--inline-code-bg);
+    border: 1px solid var(--inline-code-border);
+    border-radius: 5px;
+    padding: 0.15em 0.4em;
+    font-family: var(--code-font-family);
+    font-size: 0.95em;
+    
+    white-space: break-spaces;
+    word-break: break-word;
+}
+
+/* =========================================================== */
+/* 4. PROTEÇÃO DE SYNTAX HIGHLIGHTING (SHIKI/TEMAS)            */
+/* =========================================================== */
+
+/* Garante que as cores de sintaxe (variáveis, funções, strings) não sejam apagadas */
+.cm-editor .HyperMD-codeblock span[class^="cm-"],
+.markdown-rendered pre code span {
+    color: inherit; 
+}

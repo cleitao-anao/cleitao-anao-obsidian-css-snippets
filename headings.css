@@ -1,0 +1,74 @@
+/* Definição das Variáveis (Coloque esta parte no topo do seu snippet) */
+body {
+    /* Cores dos títulos (Exemplo de Roxo, Magenta, Rosa, Vermelho) */
+    --h1-font-size: 3em; /* Tamanho da fonte do H1 */
+    --padding-bottom: em; /* Espaçamento inferior para os títulos */
+    --h1-color: #9D00FF; /* Roxo */
+    --h2-color: #cd00cdd2; /* Magenta */
+    --h3-color: #FF0D97; /* Rosa */
+    --h4-color: #FF0000; /* Vermelho */
+
+
+    /* Você pode adicionar variáveis para outras coisas aqui (ex: --main-text-color) */
+}
+
+/* Aplicação das Variáveis nos Títulos (Modo de Edição) */
+
+/* Heading mods (Deixei o padding, embora não use as variáveis de cor) */
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-header-2,
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-header-3,
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-header-4,
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-header-5,
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-header-6 {
+    padding-bottom: 0.3em !important;
+}
+
+.markdown-preview-view h2,
+.markdown-preview-view h3,
+.markdown-preview-view h4,
+.markdown-preview-view h5,
+.markdown-preview-view h6 {
+    margin-top: 3em !important;
+}
+
+/* Aplicação das Cores (Usando a função var()) */
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-header-1 {
+    color: var(--h1-color);
+}
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-header-2 {
+    color: var(--h2-color);
+}
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-header-3 {
+    color: var(--h3-color);
+}
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-header-4 {
+    color: var(--h4-color);
+}
+/* Se precisar das cores para H5 e H6 */
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-header-5 {
+    color: var(--h4-color); /* Usando a mesma cor do H4 como exemplo */
+}
+.markdown-source-view.mod-cm6 .cm-content .HyperMD-header-6 {
+    color: var(--h4-color); /* Usando a mesma cor do H4 como exemplo */
+}
+
+
+/* --- BÔNUS: Aplicação no Modo de Visualização (Preview) --- */
+/* É altamente recomendável aplicar as mesmas cores para a visualização, 
+   para garantir consistência na leitura. */
+
+.markdown-rendered h1 {
+    color: var(--h1-color);
+    font-size: var(--h1-font-size);
+}
+.markdown-rendered h2 {
+    color: var(--h2-color);
+}
+.markdown-rendered h3 {
+    color: var(--h3-color);
+}
+.markdown-rendered h4,
+.markdown-rendered h5,
+.markdown-rendered h6 {
+    color: var(--h4-color);
+}
